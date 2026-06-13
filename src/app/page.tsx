@@ -108,7 +108,7 @@ export default function Home() {
 
   <h2 className="font-bold text-lg mb-4 text-blue-900 text-center">
     É importante guardar o código para consultar sua resposta.
-    Ver minha resposta:
+    
   </h2>
 
   <input
@@ -122,7 +122,7 @@ export default function Home() {
     onClick={buscarMensagem}
     className="mt-4 w-full bg-blue-700 hover:bg-blue-800 text-white py-4 rounded-xl font-semibold transition shadow-md"
   >
-    Buscar
+    Consultar Resposta
   </button>
 
  {result && (
