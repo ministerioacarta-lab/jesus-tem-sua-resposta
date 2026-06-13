@@ -147,7 +147,8 @@ export default function Home() {
       {/* RODAPÉ */}
       <footer className="mt-10 text-center text-white">
         <p className="opacity-80">
-          Projeto desenvolvido por Márlon de Jesus e Hannah Tiffani
+          Este projeto é desenvolvido e gerenciado por Márlon de Jesus e Hannah Tiffani.
+Não usamos respostas automáticas nem inteligência artificial, nós mesmos lemos tudo com atenção para responder da melhor forma possível. Por isso, pode demorar um pouquinho, mas é porque queremos cuidar bem de cada mensagem.
         </p>
 
         <p className="font-bold text-xl mt-2">
