@@ -107,7 +107,8 @@ export default function Home() {
       <div className="mt-10 w-full max-w-3xl bg-white text-black p-6 rounded-2xl shadow-2xl border border-slate-200 flex flex-col items-center">
 
   <h2 className="font-bold text-lg mb-4 text-blue-900 text-center">
-    Ver minha resposta
+    É importante guardar o código para consultar sua resposta.
+    Ver minha resposta:
   </h2>
 
   <input
@@ -136,7 +137,7 @@ export default function Home() {
       </p>
     ) : (
       <p className="text-yellow-600 mt-2 font-semibold">
-        Ainda não respondido 🙏
+        Ainda não respondido! Espere só mais um pouco.
       </p>
     )}
   </div>
