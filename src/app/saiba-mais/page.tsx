@@ -44,6 +44,8 @@ export default function SaibaMais() {
           responder as mensagens. Cada pedido é lido com atenção por nós, que buscamos responder com amor, respeito e cuidado.
           Por isso, sua resposta pode levar algum tempo, mas garantimos que sua
           mensagem será recebida com carinho.
+
+          Créditos Projeto LÓGOS: Idealizado e desenvolvido por Márlon de Jesus. Colaboração de Hannah Tiffani. Gerenciado por Márlon de Jesus e Hannah Tiffani.
         </p>
         <div className="mt-10 space-y-4">
 
