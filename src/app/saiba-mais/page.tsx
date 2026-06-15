@@ -39,14 +39,21 @@ export default function SaibaMais() {
           abrir seu coração.
         </p>
 
-        <p className="text-lg text-slate-700 leading-8">
-          Não utilizamos respostas automáticas nem inteligência artificial para
-          responder as mensagens. Cada pedido é lido com atenção por nós, que buscamos responder com amor, respeito e cuidado.
-          Por isso, sua resposta pode levar algum tempo, mas garantimos que sua
-          mensagem será recebida com carinho.
+      <p className="text-lg text-slate-700 leading-8">
+  Não utilizamos respostas automáticas nem inteligência artificial para
+  responder as mensagens. Cada pedido é lido com atenção por nós, que buscamos responder com amor, respeito e cuidado.
+  Por isso, sua resposta pode levar algum tempo, mas garantimos que sua
+  mensagem será recebida com carinho.
+</p>
 
-          Créditos Projeto LÓGOS: Idealizado e desenvolvido por Márlon de Jesus. Colaboração de Hannah Tiffani. Gerenciado por Márlon de Jesus e Hannah Tiffani.
-        </p>
+<p className="text-lg text-slate-700 leading-8 mt-6 border-t pt-6">
+  O Projeto <strong>LÓGOS</strong> foi idealizado e desenvolvido por
+  <strong> Márlon de Jesus</strong>, com a colaboração de
+  <strong> Hannah Tiffani</strong>. Atualmente, o projeto é gerenciado por
+  ambos, que se dedicam à leitura, acolhimento e resposta de cada mensagem
+  recebida com atenção, respeito e carinho.
+</p>
+          
         <div className="mt-10 space-y-4">
 
   <div className="mt-10">
