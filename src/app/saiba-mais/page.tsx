@@ -34,8 +34,7 @@ export default function SaibaMais() {
 
         <p className="text-lg text-slate-700 leading-8">
           Não utilizamos respostas automáticas nem inteligência artificial para
-          responder as mensagens. Cada pedido é lido com atenção por nossa
-          equipe, que busca responder com amor, respeito e cuidado.
+          responder as mensagens. Cada pedido é lido com atenção por nós, que buscamos responder com amor, respeito e cuidado.
           Por isso, sua resposta pode levar algum tempo, mas garantimos que sua
           mensagem será recebida com carinho.
         </p>
