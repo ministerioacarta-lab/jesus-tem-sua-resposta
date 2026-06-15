@@ -74,7 +74,7 @@ export default function Home() {
 
           {/* Selo */}
           <div className="absolute left-1/2 top-[86%] -translate-x-1/2 -translate-y-1/2 z-20">
-            <div className="w-20 h-20 rounded-full bg-white border-4 border-white shadow-xl overflow-hidden flex items-center justify-center">
+            <div className="w-20 h-20 rounded-full bg-blue-700 border-4 border-white shadow-xl overflow-hidden flex items-center justify-center">
   <Image
     src="/logo.png"
     alt="Logo"
