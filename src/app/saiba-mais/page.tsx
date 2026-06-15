@@ -39,6 +39,69 @@ export default function SaibaMais() {
           Por isso, sua resposta pode levar algum tempo, mas garantimos que sua
           mensagem será recebida com carinho.
         </p>
+        <div className="mt-10 space-y-4">
+
+  <a
+    href="https://wa.me/5511999999999"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="
+      block
+      w-full
+      text-center
+      bg-green-600
+      hover:bg-green-700
+      text-white
+      py-3
+      rounded-xl
+      font-semibold
+      transition
+    "
+  >
+    📱 Fale conosco pelo WhatsApp
+  </a>
+
+  <a
+    href="https://instagram.com/seuinstagram"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="
+      block
+      w-full
+      text-center
+      bg-pink-600
+      hover:bg-pink-700
+      text-white
+      py-3
+      rounded-xl
+      font-semibold
+      transition
+    "
+  >
+    📸 Instagram
+  </a>
+
+  <a
+    href="https://instagram.com/grupodejovens"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="
+      block
+      w-full
+      text-center
+      bg-purple-600
+      hover:bg-purple-700
+      text-white
+      py-3
+      rounded-xl
+      font-semibold
+      transition
+    "
+  >
+    👥 Grupo de Jovens
+  </a>
+
+</div>
 
         <div className="mt-10 flex justify-center">
           <Link
