@@ -44,11 +44,11 @@ export default function Home() {
       {/* CABEÇALHO */}
       <div className="text-center text-white mb-10">
         <p className="uppercase tracking-[0.3em] text-sm opacity-80">
-          Ministério A Carta
+          Jesus Tem Sua Resposta
         </p>
 
         <h1 className="text-5xl md:text-7xl font-bold mt-4">
-          Jesus Tem Sua Resposta
+          LÓGOS
         </h1>
 
         <p className="mt-6 text-lg opacity-90">
