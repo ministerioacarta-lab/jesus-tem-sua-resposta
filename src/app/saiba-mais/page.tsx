@@ -49,7 +49,7 @@ export default function SaibaMais() {
   <div className="flex flex-wrap justify-center gap-3">
 
     <a
-      href="https://wa.me/5511999999999"
+      href="https://wa.me/5533998183209"
       target="_blank"
       rel="noopener noreferrer"
       className="
@@ -63,11 +63,11 @@ export default function SaibaMais() {
         transition
       "
     >
-      WhatsApp
+      WhatsApp de Suporte
     </a>
 
     <a
-      href="https://instagram.com/seuinstagram"
+      href="https://www.instagram.com/vv.marlon/"
       target="_blank"
       rel="noopener noreferrer"
       className="
@@ -81,11 +81,11 @@ export default function SaibaMais() {
         transition
       "
     >
-      Instagram
+      Márlon
     </a>
 
     <a
-      href="https://instagram.com/grupodejovens"
+      href="https://www.instagram.com/_hannah_tiffani/"
       target="_blank"
       rel="noopener noreferrer"
       className="
@@ -99,11 +99,11 @@ export default function SaibaMais() {
         transition
       "
     >
-      Jovens
+      Hannah
     </a>
 
     <a
-      href="https://youtube.com/@canal"
+      href="https://www.instagram.com/jovens_adeodatos/"
       target="_blank"
       rel="noopener noreferrer"
       className="
@@ -117,7 +117,7 @@ export default function SaibaMais() {
         transition
       "
     >
-      YouTube
+      
     </a>
 
   </div>
