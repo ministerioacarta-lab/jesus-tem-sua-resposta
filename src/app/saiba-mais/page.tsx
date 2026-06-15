@@ -14,7 +14,7 @@ export default function SaibaMais() {
     alt="Logo"
     width={80}
     height={80}
-    className="object-contain p-3"
+     className="object-contain scale-125 translate-y-2"
   />
 </div>
         </div>
