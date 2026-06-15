@@ -133,7 +133,7 @@ export default function Home() {
 
   <button
     onClick={buscarMensagem}
-    className="mt-4 w-full bg-blue-700 hover:bg-blue-800 text-white py-4 rounded-xl font-semibold transition shadow-md"
+    className="mt-6 w-full bg-blue-700 hover:bg-blue-800 text-white py-4 rounded-xl font-semibold transition shadow-md"
   >
     Consultar Resposta
   </button>
