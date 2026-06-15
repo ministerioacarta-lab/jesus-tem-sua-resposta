@@ -41,65 +41,87 @@ export default function SaibaMais() {
         </p>
         <div className="mt-10 space-y-4">
 
-  <a
-    href="https://wa.me/5511999999999"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="
-      block
-      w-full
-      text-center
-      bg-green-600
-      hover:bg-green-700
-      text-white
-      py-3
-      rounded-xl
-      font-semibold
-      transition
-    "
-  >
-    📱 Fale conosco pelo WhatsApp
-  </a>
+  <div className="mt-10">
+  <h2 className="text-center text-blue-700 font-semibold mb-4">
+    Redes Sociais e Contato
+  </h2>
 
-  <a
-    href="https://instagram.com/seuinstagram"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="
-      block
-      w-full
-      text-center
-      bg-pink-600
-      hover:bg-pink-700
-      text-white
-      py-3
-      rounded-xl
-      font-semibold
-      transition
-    "
-  >
-    📸 Instagram
-  </a>
+  <div className="flex flex-wrap justify-center gap-3">
 
-  <a
-    href="https://instagram.com/grupodejovens"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="
-      block
-      w-full
-      text-center
-      bg-purple-600
-      hover:bg-purple-700
-      text-white
-      py-3
-      rounded-xl
-      font-semibold
-      transition
-    "
-  >
-    👥 Grupo de Jovens
-  </a>
+    <a
+      href="https://wa.me/5511999999999"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="
+        bg-blue-700
+        hover:bg-blue-800
+        text-white
+        px-5
+        py-2
+        rounded-lg
+        font-medium
+        transition
+      "
+    >
+      WhatsApp
+    </a>
+
+    <a
+      href="https://instagram.com/seuinstagram"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="
+        bg-blue-700
+        hover:bg-blue-800
+        text-white
+        px-5
+        py-2
+        rounded-lg
+        font-medium
+        transition
+      "
+    >
+      Instagram
+    </a>
+
+    <a
+      href="https://instagram.com/grupodejovens"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="
+        bg-blue-700
+        hover:bg-blue-800
+        text-white
+        px-5
+        py-2
+        rounded-lg
+        font-medium
+        transition
+      "
+    >
+      Jovens
+    </a>
+
+    <a
+      href="https://youtube.com/@canal"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="
+        bg-blue-700
+        hover:bg-blue-800
+        text-white
+        px-5
+        py-2
+        rounded-lg
+        font-medium
+        transition
+      "
+    >
+      YouTube
+    </a>
+
+  </div>
+</div>
 
 </div>
 
