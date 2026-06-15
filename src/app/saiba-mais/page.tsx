@@ -43,7 +43,7 @@ export default function SaibaMais() {
 
   <div className="mt-10">
   <h2 className="text-center text-blue-700 font-semibold mb-4">
-    Redes Sociais e Contato
+    Redes Sociais dos Criadores e Contato
   </h2>
 
   <div className="flex flex-wrap justify-center gap-3">
@@ -63,7 +63,7 @@ export default function SaibaMais() {
         transition
       "
     >
-      WhatsApp de Suporte
+      WhatsApp Para Suporte
     </a>
 
     <a
@@ -117,7 +117,7 @@ export default function SaibaMais() {
         transition
       "
     >
-      
+      Adeodatos!
     </a>
 
   </div>
