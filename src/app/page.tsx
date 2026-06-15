@@ -80,7 +80,7 @@ export default function Home() {
     alt="Logo"
     width={80}
     height={80}
-    className="object-cover"
+    className="object-contain p-1"
   />
 </div>
           </div>
