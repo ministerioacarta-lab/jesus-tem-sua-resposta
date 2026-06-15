@@ -7,7 +7,7 @@ export default function SaibaMais() {
         </h1>
 
         <p className="text-lg text-slate-700 mb-4">
-          O projeto Jesus Tem Sua Resposta nasceu com o propósito de
+          O projeto "LÓGOS" nasceu com o propósito de
           acolher pedidos de oração, desabafos e mensagens de esperança.
         </p>
 
