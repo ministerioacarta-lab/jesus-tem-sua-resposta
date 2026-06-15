@@ -1,5 +1,5 @@
 "use client";
-
+import Link from "next/link";
 import { useState } from "react";
 import { db } from "./lib/firebase";
 import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
@@ -95,6 +95,19 @@ export default function Home() {
           >
             Enviar Mensagem
           </button>
+          <Link
+  href="/saiba-mais"
+  className="
+    mt-4
+    block
+    text-center
+    text-blue-700
+    font-semibold
+  "
+>
+  Saiba Mais
+</Link>
+          
 
           {code && (
             <p className="mt-4 text-center text-green-600 font-bold">
