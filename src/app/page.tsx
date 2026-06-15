@@ -106,7 +106,7 @@ export default function Home() {
 
       <div className="mt-10 w-full max-w-3xl bg-white text-black p-6 rounded-2xl shadow-2xl border border-slate-200 flex flex-col items-center">
 
-  <h2 className="text-lg mb-6 text-blue-700 text-center">
+  <h2 className="text-lg mb-6 text-blue-500 text-center">
     É importante guardar o código para consultar sua resposta.
     
   </h2>
