@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function SaibaMais() {
@@ -7,9 +8,15 @@ export default function SaibaMais() {
       <div className="bg-white max-w-3xl w-full rounded-3xl shadow-2xl p-10">
 
         <div className="flex justify-center mb-6">
-          <div className="w-20 h-20 rounded-full bg-blue-700 text-white flex items-center justify-center text-2xl font-bold shadow-lg">
-            AC
-          </div>
+          <div className="w-20 h-20 rounded-full bg-white border-4 border-white shadow-lg overflow-hidden flex items-center justify-center">
+  <Image
+    src="/logo.png"
+    alt="Logo"
+    width={80}
+    height={80}
+    className="object-contain p-3"
+  />
+</div>
         </div>
 
         <h1 className="text-4xl font-bold text-center text-blue-700 mb-8">
