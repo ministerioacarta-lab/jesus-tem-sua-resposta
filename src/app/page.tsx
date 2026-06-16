@@ -1,4 +1,6 @@
 "use client";
+import { getToken } from "firebase/messaging";
+import { messaging } from "./lib/firebase";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -10,6 +12,7 @@ export default function Home() {
   const [code, setCode] = useState("");
   const [searchCode, setSearchCode] = useState("");
   const [result, setResult] = useState<any>(null);
+  const [notificacoesAtivas, setNotificacoesAtivas] = useState(false);
 
   function gerarCodigo() {
     return Math.random().toString(36).substring(2, 8).toUpperCase();
@@ -31,6 +34,7 @@ export default function Home() {
   async function buscarMensagem() {
     const q = query(collection(db, "pedidos"), where("code", "==", searchCode));
     const snap = await getDocs(q);
+    const [notificacoesAtivas, setNotificacoesAtivas] = useState(false);
 
     if (!snap.empty) {
       setResult(snap.docs[0].data());
@@ -38,6 +42,30 @@ export default function Home() {
       setResult(null);
     }
   }
+  async function ativarNotificacoes() {
+  try {
+    const permission = await Notification.requestPermission();
+
+    if (permission !== "granted") {
+      alert("Permissão negada.");
+      return;
+    }
+
+    const token = await getToken(messaging!, {
+      vapidKey:
+        "BE6gO7cTbrEc9k8iFpNPQ4YKU98q6cocIV2Q_YlaTpnGt37h6MjpXfz3uPPNLu5zmgfJQRmPuNaRzzjeAjErN9g",
+    });
+
+    console.log("TOKEN:", token);
+
+    alert("Notificações ativadas!");
+
+    setNotificacoesAtivas(true);
+  } catch (error) {
+    console.error(error);
+    alert("Erro ao ativar notificações.");
+  }
+}
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-blue-900 to-blue-700 flex flex-col items-center px-6 py-10">
