@@ -2,9 +2,21 @@
 
 import { useEffect, useState } from "react";
 import { getToken, onMessage } from "firebase/messaging";
-import { getFirebaseMessaging } from "../lib/firebase";
+import {
+  collection,
+  getDocs,
+  query,
+  serverTimestamp,
+  updateDoc,
+  where,
+} from "firebase/firestore";
+import { db, getFirebaseMessaging } from "../lib/firebase";
 
-export default function BotaoNotificacoes() {
+type BotaoNotificacoesProps = {
+  codigo: string;
+};
+
+export default function BotaoNotificacoes({ codigo }: BotaoNotificacoesProps) {
   const [status, setStatus] = useState("");
 
   useEffect(() => {
@@ -12,9 +24,7 @@ export default function BotaoNotificacoes() {
       try {
         const messaging = await getFirebaseMessaging();
 
-        if (!messaging) {
-          return;
-        }
+        if (!messaging) return;
 
         onMessage(messaging, (payload) => {
           const titulo = payload.notification?.title || "Nova notificação";
@@ -33,6 +43,13 @@ export default function BotaoNotificacoes() {
 
   async function ativarNotificacoes() {
     try {
+      const codigoLimpo = codigo.trim();
+
+      if (!codigoLimpo) {
+        setStatus("Digite seu código antes de ativar as notificações.");
+        return;
+      }
+
       setStatus("Solicitando permissão...");
 
       if (!("Notification" in window)) {
@@ -66,7 +83,8 @@ export default function BotaoNotificacoes() {
       }
 
       const token = await getToken(messaging, {
-        vapidKey: "BE6gO7cTbrEc9k8iFpNPQ4YKU98q6cocIV2Q_YlaTpnGt37h6MjpXfz3uPPNLu5zmgfJQRmPuNaRzzjeAjErN9g",
+        vapidKey:
+          "BE6gO7cTbrEc9k8iFpNPQ4YKU98q6cocIV2Q_YlaTpnGt37h6MjpXfz3uPPNLu5zmgfJQRmPuNaRzzjeAjErN9g",
         serviceWorkerRegistration: registration,
       });
 
@@ -74,6 +92,22 @@ export default function BotaoNotificacoes() {
         setStatus("Não foi possível gerar o token de notificação.");
         return;
       }
+
+      const pedidosRef = collection(db, "pedidos");
+      const pedidoQuery = query(pedidosRef, where("code", "==", codigoLimpo));
+      const pedidoSnapshot = await getDocs(pedidoQuery);
+
+      if (pedidoSnapshot.empty) {
+        setStatus("Código não encontrado. Confira e tente novamente.");
+        return;
+      }
+
+      const pedidoDoc = pedidoSnapshot.docs[0];
+
+      await updateDoc(pedidoDoc.ref, {
+        notificationToken: token,
+        notificationTokenUpdatedAt: serverTimestamp(),
+      });
 
       console.log("Token de notificação:", token);
 
@@ -91,20 +125,20 @@ export default function BotaoNotificacoes() {
   }
 
   return (
-  <div className="mt-4 w-full flex flex-col items-center gap-3">
-    <button
-      type="button"
-      onClick={ativarNotificacoes}
-      className="w-full bg-blue-700 hover:bg-blue-800 text-white px-8 py-4 rounded-xl font-semibold shadow-lg transition"
-    >
-      Ativar notificações
-    </button>
+    <div className="mt-5 flex flex-col items-center">
+      <button
+        type="button"
+        onClick={ativarNotificacoes}
+        className="text-blue-700 hover:text-blue-800 font-semibold transition"
+      >
+        Ativar notificações
+      </button>
 
-    {status && (
-      <p className="text-sm font-medium text-slate-700 text-center">
-        {status}
-      </p>
-    )}
-  </div>
-);
+      {status && (
+        <p className="mt-3 text-sm font-medium text-slate-700 text-center">
+          {status}
+        </p>
+      )}
+    </div>
+  );
 }
