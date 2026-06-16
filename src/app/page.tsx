@@ -1,5 +1,6 @@
 "use client";
-import Image from "next/image";
+import { getToken } from "firebase/messaging";
+import { messaging } from "./lib/firebase";import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { db } from "./lib/firebase";
@@ -10,8 +11,33 @@ export default function Home() {
   const [code, setCode] = useState("");
   const [searchCode, setSearchCode] = useState("");
   const [result, setResult] = useState<any>(null);
-
+const [notificacoesAtivas, setNotificacoesAtivas] = useState(false);
   function gerarCodigo() {
+    
+    async function ativarNotificacoes() {
+  try {
+    const permission = await Notification.requestPermission();
+
+    if (permission !== "granted") {
+      alert("Permissão negada.");
+      return;
+    }
+
+    const token = await getToken(messaging!, {
+      vapidKey:
+        "BE6gO7cTbrEc9k8iFpNPQ4YKU98q6cocIV2Q_YlaTpnGt37h6MjpXfz3uPPNLu5zmgfJQRmPuNaRzzjeAjErN9g",
+    });
+
+    console.log("TOKEN:", token);
+
+    alert("Notificações ativadas!");
+
+    setNotificacoesAtivas(true);
+  } catch (error) {
+    console.error(error);
+    alert("Erro ao ativar notificações.");
+  }
+}
     return Math.random().toString(36).substring(2, 8).toUpperCase();
   }
 
@@ -102,6 +128,13 @@ export default function Home() {
           >
             Enviar Mensagem
           </button>
+          <button
+  onClick={ativarNotificacoes}
+  className="mt-4 w-full bg-green-600 hover:bg-green-700 text-white py-4 rounded-xl font-semibold transition"
+>
+  Ativar Notificações
+</button>
+        
           <Link
   href="/saiba-mais"
   className="
