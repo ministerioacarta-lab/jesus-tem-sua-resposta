@@ -1,188 +1,179 @@
 "use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { getToken, onMessage } from "firebase/messaging";
-import { useEffect, useState } from "react";
-import { getFirebaseMessaging } from "./lib/firebase";
+import { useState } from "react";
+import { db } from "./lib/firebase";
+import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
 
-export default function SaibaMais() {
-  const [statusNotificacao, setStatusNotificacao] = useState("");
+export default function Home() {
+  const [message, setMessage] = useState("");
+  const [code, setCode] = useState("");
+  const [searchCode, setSearchCode] = useState("");
+  const [result, setResult] = useState<any>(null);
 
-  useEffect(() => {
-    async function ouvirNotificacoes() {
-      const messaging = await getFirebaseMessaging();
+  function gerarCodigo() {
+    return Math.random().toString(36).substring(2, 8).toUpperCase();
+  }
 
-      if (!messaging) {
-        return;
-      }
+  async function salvarMensagem() {
+    const newCode = gerarCodigo();
 
-      onMessage(messaging, (payload) => {
-        const titulo = payload.notification?.title || "Nova notificação";
-        const mensagem =
-          payload.notification?.body || "Você recebeu uma nova mensagem.";
+    await addDoc(collection(db, "pedidos"), {
+      text: message,
+      createdAt: new Date(),
+      code: newCode,
+    });
 
-        setStatusNotificacao(`${titulo}: ${mensagem}`);
-      });
-    }
+    setCode(newCode);
+    setMessage("");
+  }
 
-    ouvirNotificacoes();
-  }, []);
+  async function buscarMensagem() {
+    const q = query(collection(db, "pedidos"), where("code", "==", searchCode));
+    const snap = await getDocs(q);
 
-  async function ativarNotificacoes() {
-    try {
-      if (!("Notification" in window)) {
-        setStatusNotificacao("Este navegador não suporta notificações.");
-        return;
-      }
-
-      const permissao = await Notification.requestPermission();
-
-      if (permissao !== "granted") {
-        setStatusNotificacao("Permissão de notificação negada.");
-        return;
-      }
-
-      const messaging = await getFirebaseMessaging();
-
-      if (!messaging) {
-        setStatusNotificacao("Este navegador não suporta notificações push.");
-        return;
-      }
-
-      const token = await getToken(messaging, {
-        vapidKey: "BE6gO7cTbrEc9k8iFpNPQ4YKU98q6cocIV2Q_YlaTpnGt37h6MjpXfz3uPPNLu5zmgfJQRmPuNaRzzjeAjErN9g",
-      });
-
-      console.log("Token de notificação:", token);
-
-      setStatusNotificacao("Notificações ativadas com sucesso!");
-    } catch (error) {
-      console.error("Erro ao ativar notificações:", error);
-      setStatusNotificacao("Não foi possível ativar as notificações.");
+    if (!snap.empty) {
+      setResult(snap.docs[0].data());
+    } else {
+      setResult(null);
     }
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-blue-900 to-blue-600 flex flex-col items-center justify-center p-6">
-      <div className="bg-white max-w-3xl w-full rounded-3xl shadow-2xl p-10">
-        <div className="flex justify-center mb-6">
-          <div className="w-20 h-20 rounded-full bg-white border-4 border-white shadow-lg overflow-hidden flex items-center justify-center">
-            <Image
-              src="/logo.png"
-              alt="Logo"
-              width={80}
-              height={80}
-              className="object-contain p-3"
-            />
-          </div>
-        </div>
+    <main className="min-h-screen bg-gradient-to-b from-blue-900 to-blue-700 flex flex-col items-center px-6 py-10">
 
-        <h1 className="text-4xl font-bold text-center text-blue-700 mb-8">
-          Sobre o Projeto LÓGOS
+      {/* CABEÇALHO */}
+      <div className="text-center text-white mb-10">
+        <p className="uppercase tracking-[0.3em] text-sm opacity-80">
+          Jesus Tem Sua Resposta
+        </p>
+
+        <h1 className="text-5xl md:text-7xl font-bold mt-4">
+          LÓGOS
         </h1>
 
-        <p className="text-lg text-slate-700 leading-8 mb-6">
-          O projeto <strong>LÓGOS</strong> nasceu com o propósito de acolher
-          pedidos de oração, desabafos e mensagens de esperança.
+        <p className="mt-6 text-lg opacity-90">
+          Escreva o que está em seu coração.
+          <br />
+          Sua mensagem será recebida de forma anônima.
         </p>
+      </div>
 
-        <p className="text-lg text-slate-700 leading-8 mb-6">
-          Acreditamos que toda pessoa merece ser ouvida. Muitas vezes,
-          carregamos dúvidas, medos e dores que não conseguimos compartilhar
-          com ninguém.
-        </p>
+      {/* ENVELOPE */}
+      <div className="w-full max-w-3xl bg-white rounded-2xl shadow-2xl overflow-hidden">
 
-        <p className="text-lg text-slate-700 leading-8 mb-6">
-          Por isso criamos este espaço seguro e anônimo para que você possa
-          abrir seu coração.
-        </p>
+        {/* Aba */}
+        <div className="relative w-full h-48">
 
-        <p className="text-lg text-slate-700 leading-8">
-          Não utilizamos respostas automáticas nem inteligência artificial para
-          responder as mensagens. Cada pedido é lido com atenção por nós, que
-          buscamos responder com amor, respeito e cuidado. Por isso, sua
-          resposta pode levar algum tempo, mas garantimos que sua mensagem será
-          recebida com carinho.
-        </p>
+          <div
+            className="absolute inset-0 bg-slate-100"
+            style={{
+              clipPath: "polygon(0 0, 50% 100%, 100% 0)",
+            }}
+          />
 
-        <p className="text-lg text-slate-700 leading-8 mt-6 border-t pt-6">
-          O Projeto <strong>LÓGOS</strong> foi idealizado e desenvolvido por
-          <strong> Márlon de Jesus</strong>, com a colaboração de
-          <strong> Hannah Tiffani</strong>. Atualmente, o projeto é gerenciado
-          por ambos, que se dedicam à leitura, acolhimento e resposta de cada
-          mensagem recebida com atenção, respeito e carinho.
-        </p>
-
-        <div className="mt-10">
-          <h2 className="text-center text-blue-700 font-semibold mb-4">
-            Redes Sociais dos Criadores e Contato
-          </h2>
-
-          <div className="flex flex-wrap justify-center gap-3">
-            <a
-              href="https://wa.me/5533998183209"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-blue-700 hover:bg-blue-800 text-white px-5 py-2 rounded-lg font-medium transition"
-            >
-              WhatsApp Para Suporte
-            </a>
-
-            <a
-              href="https://www.instagram.com/vv.marlon/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-blue-700 hover:bg-blue-800 text-white px-5 py-2 rounded-lg font-medium transition"
-            >
-              Márlon
-            </a>
-
-            <a
-              href="https://www.instagram.com/_hannah_tiffani/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-blue-700 hover:bg-blue-800 text-white px-5 py-2 rounded-lg font-medium transition"
-            >
-              Hannah
-            </a>
-
-            <a
-              href="https://www.instagram.com/jovens_adeodatos/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-blue-700 hover:bg-blue-800 text-white px-5 py-2 rounded-lg font-medium transition"
-            >
-              Adeodatos!
-            </a>
+          {/* Selo */}
+          <div className="absolute left-1/2 top-[86%] -translate-x-1/2 -translate-y-1/2 z-20">
+            <div className="w-20 h-20 rounded-full bg-blue-700 border-4 border-white shadow-xl overflow-hidden flex items-center justify-center">
+  <Image
+    src="/logo.png"
+    alt="Logo"
+    width={80}
+    height={80}
+    className="object-contain p-3"
+  />
+</div>
           </div>
         </div>
 
-        <div className="mt-10 border-t pt-8 text-center">
-          <button
-            type="button"
-            onClick={ativarNotificacoes}
-            className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-xl font-semibold transition"
-          >
-            Ativar notificações
-          </button>
+        {/* CONTEÚDO */}
+        <div className="p-8 md:p-10">
 
-          {statusNotificacao && (
-            <p className="mt-4 text-sm font-medium text-slate-700">
-              {statusNotificacao}
+          <textarea
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder="Escreva aqui seu desabafo ou pedido de oração..."
+            className="w-full h-60 resize-none border border-slate-200 rounded-xl p-4 outline-none focus:border-blue-500 text-lg text-slate-700"
+          />
+
+          <button
+            onClick={salvarMensagem}
+            className="mt-6 w-full bg-blue-700 hover:bg-blue-800 text-white py-4 rounded-xl font-semibold transition"
+          >
+            Enviar Mensagem
+          </button>
+          <Link
+  href="/saiba-mais"
+  className="
+    mt-4
+    block
+    text-center
+    text-blue-600
+    font-semibold
+  "
+>
+  Saiba Mais
+</Link>
+          
+
+          {code && (
+            <p className="mt-4 text-center text-green-600 font-bold">
+              Seu código: {code}
             </p>
           )}
         </div>
-
-        <div className="mt-10 flex justify-center">
-          <Link
-            href="/"
-            className="bg-blue-700 hover:bg-blue-800 text-white px-8 py-3 rounded-xl font-semibold transition"
-          >
-            Voltar ao início
-          </Link>
-        </div>
       </div>
+
+      <div className="mt-10 w-full max-w-3xl bg-white text-black p-6 rounded-2xl shadow-2xl border border-slate-200 flex flex-col items-center">
+
+  <h2 className="text-lg mb-6 text-blue-600 text-center">
+    É importante guardar o código para consultar sua resposta.
+    
+  </h2>
+
+  <input
+  className="w-full h-12 border border-slate-200 rounded-xl px-4 outline-none focus:border-blue-500 text-center text-slate-700 text-lg"
+  placeholder="Digite seu código"
+  value={searchCode}
+  onChange={(e) => setSearchCode(e.target.value)}
+/>
+
+  <button
+    onClick={buscarMensagem}
+    className="mt-6 w-full bg-blue-700 hover:bg-blue-800 text-white py-4 rounded-xl font-semibold transition shadow-md"
+  >
+    Consultar Resposta
+  </button>
+
+ {result && (
+  <div className="mt-6 text-center w-full">
+    <p className="text-slate-700">
+      <strong>Mensagem:</strong> {result.text}
+    </p>
+
+    {result.resposta ? (
+      <p className="text-blue-700 mt-2 font-semibold">
+        <strong>Resposta:</strong> {result.resposta}
+      </p>
+    ) : (
+      <p className="text-yellow-600 mt-2 font-semibold">
+        Ainda não respondido! Espere só mais um pouco.
+      </p>
+    )}
+  </div>
+)}
+</div>
+
+      {/* RODAPÉ */}
+      <footer className="mt-10 text-center text-white">
+        <p className="opacity-80">
+          Este projeto é desenvolvido e gerenciado por Márlon de Jesus e Hannah Tiffani.
+
+        </p>
+
+        
+      </footer>
+
     </main>
   );
 }
