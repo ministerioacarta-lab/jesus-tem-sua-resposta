@@ -9,17 +9,23 @@ export default function BotaoNotificacoes() {
 
   useEffect(() => {
     async function ouvirNotificacoes() {
-      const messaging = await getFirebaseMessaging();
+      try {
+        const messaging = await getFirebaseMessaging();
 
-      if (!messaging) return;
+        if (!messaging) {
+          return;
+        }
 
-      onMessage(messaging, (payload) => {
-        const titulo = payload.notification?.title || "Nova notificação";
-        const mensagem =
-          payload.notification?.body || "Você recebeu uma nova mensagem.";
+        onMessage(messaging, (payload) => {
+          const titulo = payload.notification?.title || "Nova notificação";
+          const mensagem =
+            payload.notification?.body || "Você recebeu uma nova mensagem.";
 
-        setStatus(`${titulo}: ${mensagem}`);
-      });
+          setStatus(`${titulo}: ${mensagem}`);
+        });
+      } catch (error) {
+        console.error("Erro ao ouvir notificações:", error);
+      }
     }
 
     ouvirNotificacoes();
@@ -27,8 +33,15 @@ export default function BotaoNotificacoes() {
 
   async function ativarNotificacoes() {
     try {
+      setStatus("Solicitando permissão...");
+
       if (!("Notification" in window)) {
         setStatus("Este navegador não suporta notificações.");
+        return;
+      }
+
+      if (!("serviceWorker" in navigator)) {
+        setStatus("Este navegador não suporta service worker.");
         return;
       }
 
@@ -39,6 +52,12 @@ export default function BotaoNotificacoes() {
         return;
       }
 
+      setStatus("Registrando notificações...");
+
+      const registration = await navigator.serviceWorker.register(
+        "/firebase-messaging-sw.js"
+      );
+
       const messaging = await getFirebaseMessaging();
 
       if (!messaging) {
@@ -47,14 +66,26 @@ export default function BotaoNotificacoes() {
       }
 
       const token = await getToken(messaging, {
-        vapidKey: "COLE_SUA_VAPID_KEY_AQUI",
+        vapidKey: "BE6gO7cTbrEc9k8iFpNPQ4YKU98q6cocIV2Q_YlaTpnGt37h6MjpXfz3uPPNLu5zmgfJQRmPuNaRzzjeAjErN9g",
+        serviceWorkerRegistration: registration,
       });
+
+      if (!token) {
+        setStatus("Não foi possível gerar o token de notificação.");
+        return;
+      }
 
       console.log("Token de notificação:", token);
 
       setStatus("Notificações ativadas com sucesso!");
     } catch (error) {
       console.error("Erro ao ativar notificações:", error);
+
+      if (error instanceof Error) {
+        setStatus(`Erro: ${error.message}`);
+        return;
+      }
+
       setStatus("Não foi possível ativar as notificações.");
     }
   }
