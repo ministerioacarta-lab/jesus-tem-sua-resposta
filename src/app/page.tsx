@@ -145,7 +145,6 @@ export default function Home() {
   >
     Consultar Resposta
   </button>
-  <BotaoNotificacoes codigo={code} />
 
  {result && (
   <div className="mt-6 text-center w-full">
