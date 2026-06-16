@@ -1,4 +1,5 @@
 "use client";
+import BotaoNotificacoes from "./components/BotaoNotificacoes";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -144,6 +145,7 @@ export default function Home() {
   >
     Consultar Resposta
   </button>
+  <BotaoNotificacoes />
 
  {result && (
   <div className="mt-6 text-center w-full">
