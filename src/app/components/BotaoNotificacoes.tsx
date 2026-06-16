@@ -91,11 +91,11 @@ export default function BotaoNotificacoes() {
   }
 
   return (
-  <div className="mt-6 flex flex-col items-center gap-3">
+  <div className="mt-4 w-full flex flex-col items-center gap-3">
     <button
       type="button"
       onClick={ativarNotificacoes}
-      className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold transition"
+      className="w-full bg-blue-700 hover:bg-blue-800 text-white px-8 py-4 rounded-xl font-semibold shadow-lg transition"
     >
       Ativar notificações
     </button>
