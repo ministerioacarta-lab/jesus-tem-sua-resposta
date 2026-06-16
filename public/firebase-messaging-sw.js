@@ -1,28 +1,65 @@
-importScripts("https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js");
-importScripts("https://www.gstatic.com/firebasejs/10.12.5/firebase-messaging-compat.js");
-
-firebase.initializeApp({
-  apiKey: "AIzaSyA3mNf_zLjsF_ACWQce75SoMJkVWQ0JSI8",
-  authDomain: "jesus-tem-sua-resposta.firebaseapp.com",
-  projectId: "jesus-tem-sua-resposta",
-  storageBucket: "jesus-tem-sua-resposta.firebasestorage.app",
-  messagingSenderId: "1013292935764",
-  appId: "1:1013292935764:web:a5befb30673a405a019bc1"
+self.addEventListener("install", function () {
+  self.skipWaiting();
 });
 
-var messaging = firebase.messaging();
+self.addEventListener("activate", function (event) {
+  event.waitUntil(self.clients.claim());
+});
 
-messaging.onBackgroundMessage(function (payload) {
-  var notificationTitle = "Jesus tem sua resposta";
-  var notificationOptions = {
+self.addEventListener("push", function (event) {
+  var title = "Jesus tem sua resposta";
+  var options = {
     body: "Você recebeu uma nova mensagem.",
-    icon: "/logo.png"
+    icon: "/logo.png",
+    badge: "/favicon-32x32.png",
+    data: {
+      url: "/"
+    }
   };
 
-  if (payload && payload.notification) {
-    notificationTitle = payload.notification.title || notificationTitle;
-    notificationOptions.body = payload.notification.body || notificationOptions.body;
+  if (event.data) {
+    try {
+      var payload = event.data.json();
+
+      if (payload.notification) {
+        title = payload.notification.title || title;
+        options.body = payload.notification.body || options.body;
+        options.icon = payload.notification.icon || options.icon;
+      }
+
+      if (payload.data) {
+        title = payload.data.title || title;
+        options.body = payload.data.body || options.body;
+        options.data.url = payload.data.url || "/";
+      }
+    } catch (error) {
+      options.body = event.data.text();
+    }
   }
 
-  self.registration.showNotification(notificationTitle, notificationOptions);
+  event.waitUntil(self.registration.showNotification(title, options));
+});
+
+self.addEventListener("notificationclick", function (event) {
+  event.notification.close();
+
+  var url = event.notification.data && event.notification.data.url
+    ? event.notification.data.url
+    : "/";
+
+  event.waitUntil(
+    clients.matchAll({ type: "window", includeUncontrolled: true }).then(function (clientList) {
+      for (var i = 0; i < clientList.length; i++) {
+        var client = clientList[i];
+
+        if (client.url.includes(self.location.origin) && "focus" in client) {
+          return client.focus();
+        }
+      }
+
+      if (clients.openWindow) {
+        return clients.openWindow(url);
+      }
+    })
+  );
 });

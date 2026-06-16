@@ -91,20 +91,20 @@ export default function BotaoNotificacoes() {
   }
 
   return (
-    <div className="mt-6 flex flex-col items-center gap-3">
-      <button
-        type="button"
-        onClick={ativarNotificacoes}
-        className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold transition"
-      >
-        Ativar notificações
-      </button>
+  <div className="mt-6 flex flex-col items-center gap-3">
+    <button
+      type="button"
+      onClick={ativarNotificacoes}
+      className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold transition"
+    >
+      Ativar notificações
+    </button>
 
-      {status && (
-        <p className="text-sm font-medium text-slate-700 text-center">
-          {status}
-        </p>
-      )}
-    </div>
-  );
+    {status && (
+      <p className="text-sm font-medium text-slate-700 text-center">
+        {status}
+      </p>
+    )}
+  </div>
+);
 }
