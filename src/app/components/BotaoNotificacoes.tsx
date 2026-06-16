@@ -46,19 +46,19 @@ export default function BotaoNotificacoes({ codigo }: BotaoNotificacoesProps) {
       const codigoLimpo = codigo.trim();
 
       if (!codigoLimpo) {
-        setStatus("Digite seu código antes de ativar as notificações.");
+        setStatus("As notificações ainda não estão funcionando. Em breve resolveremos.");
         return;
       }
 
       setStatus("Solicitando permissão...");
 
       if (!("Notification" in window)) {
-        setStatus("Este navegador não suporta notificações.");
+        setStatus("As notificações ainda não estão funcionando. Em breve resolveremos.");
         return;
       }
 
       if (!("serviceWorker" in navigator)) {
-        setStatus("Este navegador não suporta service worker.");
+        setStatus("As notificações ainda não estão funcionando. Em breve resolveremos.");
         return;
       }
 
