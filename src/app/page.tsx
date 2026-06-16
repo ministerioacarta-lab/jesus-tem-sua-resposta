@@ -171,9 +171,7 @@ export default function Home() {
 
         </p>
 
-        <p className="font-bold text-xl mt-2">
-          Adeodatos!
-        </p>
+        
       </footer>
 
     </main>
