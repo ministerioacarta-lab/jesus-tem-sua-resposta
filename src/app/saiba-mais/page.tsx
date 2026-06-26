@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function SaibaMais() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-blue-900 to-blue-600 flex flex-col items-center justify-center p-6">
+    <main className="min-h-screen bg-gradient-to-b from-blue-900 to-blue-700 flex flex-col items-center justify-center p-6">
 
       <div className="bg-white max-w-3xl w-full rounded-3xl shadow-2xl p-10">
 
