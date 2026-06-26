@@ -53,7 +53,7 @@ export default function SaibaMais() {
   ambos, que se dedicam à leitura, acolhimento e resposta de cada mensagem
   recebida com atenção, respeito e carinho.
 </p>
-<div className="mt-10 border-t border-slate-200 pt-8">
+<div className="mt-10 border-t pt-8">
   <h2 className="text-2xl font-semibold text-blue-700 mb-4 text-center">
     Agradecimentos
   </h2>
@@ -69,7 +69,7 @@ export default function SaibaMais() {
     <p>Gabrielly Lourenço</p>
     <p>Lara Torres</p>
     <p>Syena Maximiano</p>
-    <p>Syena Maximiano</p>
+    
   </div>
 </div>
           
