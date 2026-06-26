@@ -46,14 +46,14 @@ export default function SaibaMais() {
   mensagem será recebida com carinho.
 </p>
 
-<p className="text-lg text-slate-700 leading-8 mt-6 border-t pt-6">
+<p className="text-lg text-slate-700 leading-8 mt-6 border-t border-slate-700 pt-6">
   O Projeto <strong>LÓGOS</strong> foi idealizado e desenvolvido por
   <strong> Márlon de Jesus</strong>, com a colaboração de
   <strong> Hannah Tiffani</strong>. Atualmente, o projeto é gerenciado por
   ambos, que se dedicam à leitura, acolhimento e resposta de cada mensagem
   recebida com atenção, respeito e carinho.
 </p>
-<div className="mt-10 border-t pt-8">
+<div className="mt-10 border-t border-slate-700 pt-8">
   <h2 className="text-2xl font-semibold text-blue-700 mb-4 text-center">
     Agradecimentos
   </h2>
