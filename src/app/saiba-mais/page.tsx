@@ -62,14 +62,14 @@ export default function SaibaMais() {
     Aos testadores beta, nosso muito obrigado.
   </p>
 
-  <div className="grid grid-cols-2 gap-2 text-center text-slate-700">
-    <p>Alice Machado</p>
-    <p>Daiany Alves</p>
-    <p>Emilia Mariana</p>
-    <p>Gabrielly Lourenço</p>
-    <p>Lara Torres</p>
-    <p>Syena Maximiano</p>
-    
+ <div className="grid grid-cols-2 gap-2 text-center text-slate-700 font-bold">
+  <p>Alice Machado</p>
+  <p>Daiany Alves</p>
+  <p>Emilia Mariana</p>
+  <p>Gabrielly Lourenço</p>
+  <p>Lara Torres</p>
+  <p>Syena Maximiano</p>
+</div>
   </div>
 </div>
           
