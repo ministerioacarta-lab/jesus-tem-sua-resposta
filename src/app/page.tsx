@@ -133,7 +133,7 @@ export default function Home() {
 </h2>
 
   <input
-  className="w-full h-12 border border-slate-200 rounded-xl px-4 outline-none focus:border-blue-500 text-center text-slate-700 text-lg"
+  className="w-full h-12 border border-slate-200 rounded-xl px-4 outline-none focus:border-blue-500 text-center text-slate-700 text-base"
   placeholder="Digite seu código"
   value={searchCode}
   onChange={(e) => setSearchCode(e.target.value)}
