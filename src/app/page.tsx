@@ -128,10 +128,9 @@ export default function Home() {
 
       <div className="mt-10 w-full max-w-3xl bg-white text-black p-6 rounded-2xl shadow-2xl border border-slate-200 flex flex-col items-center">
 
-  <h2 className="text-lg mb-6 text-blue-600 text-center">
-    É importante guardar o código para consultar sua resposta.
-    
-  </h2>
+  <h2 className="text-lg mb-6 text-blue-600 text-center font-bold">
+  É importante guardar o código para consultar sua resposta.
+</h2>
 
   <input
   className="w-full h-12 border border-slate-200 rounded-xl px-4 outline-none focus:border-blue-500 text-center text-slate-700 text-lg"
