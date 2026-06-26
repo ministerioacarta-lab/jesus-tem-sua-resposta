@@ -20,10 +20,11 @@ export default function Home() {
     const newCode = gerarCodigo();
 
     await addDoc(collection(db, "pedidos"), {
-      text: message,
-      createdAt: new Date(),
-      code: newCode,
-    });
+  text: message,
+  createdAt: new Date(),
+  code: newCode,
+  respondido: false,
+});
 
     setCode(newCode);
     setMessage("");

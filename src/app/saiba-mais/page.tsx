@@ -53,6 +53,25 @@ export default function SaibaMais() {
   ambos, que se dedicam à leitura, acolhimento e resposta de cada mensagem
   recebida com atenção, respeito e carinho.
 </p>
+<div className="mt-10 border-t border-slate-200 pt-8">
+  <h2 className="text-2xl font-semibold text-blue-700 mb-4 text-center">
+    Agradecimentos
+  </h2>
+
+  <p className="text-slate-700 text-center mb-4">
+    Aos testadores beta, nosso muito obrigado.
+  </p>
+
+  <div className="grid grid-cols-2 gap-2 text-center text-slate-700">
+    <p>Alice Machado</p>
+    <p>Daiany Alves</p>
+    <p>Emilia Mariana</p>
+    <p>Gabrielly Lourenço</p>
+    <p>Lara Torres</p>
+    <p>Syena Maximiano</p>
+    <p>Syena Maximiano</p>
+  </div>
+</div>
           
         <div className="mt-10 space-y-4">
 
